@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Настройки WB</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .button {
+            background: var(--tg-theme-button-color);
+            color: var(--tg-theme-button-text-color);
+            border: none;
+            font-size: 18px;
+        }
+        input[type="text"],
+        .input[contenteditable] {
+            display: block;
+            box-sizing: border-box;
+            font-size: 14px;
+            width: 96%;
+            padding: 12px 20px;
+            margin: 15px 0;
+            border: 1px solid var(--tg-theme-link-color, #000);
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            border-radius: 4px;
+            color: var(--tg-theme-text-color, #222222);
+            text-align: start;
+        }
+        .button:not(:last-child) {
+            margin-bottom: 20px
+        }
+        .wb-api-token{
+            width: var(--tg-theme-button-text-color);
+        }
+    </style>
+</head>
+<script type="text/javascript">
+    Telegram.WebApp.ready();
+    Telegram.WebApp.MainButton.setText('Сохранить').show().onClick(function () {
+        let token = document.getElementById('wb-api-token').value
+        const data = JSON.stringify({ "wb_api_token": token });
+        Telegram.WebApp.sendData(data);
+        Telegram.WebApp.close();
+    });
+</script>
+
+<body style="background-color: #ffffff">
+
+    <body>
+        <p>Введите токен WB в поле</p>
+        <input type="text" id="wb-api-token" name="wb-api-token" placeholder="введите токен сюда"><br>
+        <p>Нажмите сохранить для внесения изменений</p>
+    </body>
+    <script type="text/javascript">
+        Telegram.WebApp.expand();
+    </script>
+
+</html>
